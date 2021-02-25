@@ -1,0 +1,19 @@
+name: SSH Test
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  runs-on: ubuntu-latest
+  steps:
+  - name: Install SSH key
+    env:
+      SSH_KEY: ${{ secrets.SSH_KEY }}
+    run: |
+      mkdir ~/.ssh
+      echo "$SSH_KEY" > ~/.ssh/id_rsa
+      chmod 400 ~/.ssh/ir_rsa
+  - name: Exec SSH
+    run: ssh tkoyama@20.51.121.118 uptime
