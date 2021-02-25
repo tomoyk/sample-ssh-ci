@@ -16,5 +16,6 @@ jobs:
           mkdir ~/.ssh
           echo "$SSH_KEY" > ~/.ssh/id_rsa
           chmod 400 ~/.ssh/id_rsa
+          chmod 700 ~/.ssh
       - name: Exec SSH
-        run: ssh tkoyama@20.51.121.118 uptime
+        run: ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null tkoyama@20.51.121.118 uptime
